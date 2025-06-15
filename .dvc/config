@@ -1,4 +1,4 @@
 [core]
-    remote = myremote
-['remote "myremote"']
-    url = D:\data_store
+    remote = dvcstore
+['remote "dvcstore"']
+    url = s3://rajesh-ml-bucket
