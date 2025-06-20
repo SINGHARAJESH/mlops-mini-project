@@ -8,8 +8,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_a
 import mlflow
 import dagshub
 import os
-# mlflow.set_tracking_uri("https://dagshub.com/rajeshai2000/mlops-mini-project.mlflow")
-# dagshub.init(repo_owner='rajeshai2000', repo_name='mlops-mini-project', mlflow=True)
+
 dagshub_token = os.getenv("DAGSHUB_PAT")
 if not dagshub_token:
     raise EnvironmentError("DAGSHUB_PAT environment variable is not set")

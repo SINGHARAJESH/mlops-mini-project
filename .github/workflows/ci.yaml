@@ -6,12 +6,15 @@ jobs:
   project-testing:
     runs-on: ubuntu-latest
 
+    env:  # ✅ Set DAGSHUB_PAT globally so it's available to all steps
+      DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4  # ✅ Use latest v4 for Python setup
         with:
           python-version: '3.10'
 
@@ -20,7 +23,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run DVC pipeline
-        env:
-          DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
-
-        run: dvc repro
+        run: |
+          dvc repro
