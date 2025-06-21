@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, roc_a
 import mlflow
 import dagshub
 import os
-
+import joblib
 dagshub_token = os.getenv("DAGSHUB_PAT")
 if not dagshub_token:
     raise EnvironmentError("DAGSHUB_PAT environment variable is not set")
@@ -121,7 +121,13 @@ def main():
                 for param_name,param_value in params.items():
                     mlflow.log_param(param_name,param_value)
 
-            mlflow.sklearn.log_model(model, "model")
+           # mlflow.sklearn.log_model(model, "model")
+
+            
+            # joblib.dump(model, "model.pkl")
+            # mlflow.log_artifact("model.pkl", artifact_path="model")
+            mlflow.sklearn.log_model(model, name="model") 
+
             save_model_info(run.info.run_id,"model","reports/experiment_info.json")
 
             logging.info("Model evaluation completed successfully.")
