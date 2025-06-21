@@ -126,7 +126,8 @@ def main():
             
             # joblib.dump(model, "model.pkl")
             # mlflow.log_artifact("model.pkl", artifact_path="model")
-            mlflow.sklearn.log_model(model, name="model") 
+          #  mlflow.sklearn.log_model(model, name="model") 
+            mlflow.sklearn.log_model(model, artifact_path="model")
 
             save_model_info(run.info.run_id,"model","reports/experiment_info.json")
 
