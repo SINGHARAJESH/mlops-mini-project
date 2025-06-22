@@ -29,7 +29,7 @@ def promote_model():
         client.transition_model_version_stage(
             name=model_name,
             version=version.version,
-            stage="Archived"
+            stage="Staging"
         )
 
     # Promote the new model to production
