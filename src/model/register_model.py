@@ -15,6 +15,7 @@ os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
 dagshub_url = "https://dagshub.com"
 repo_owner = "rajeshai2000"
 repo_name = "mlops-mini-project"
+mlflow.set_tracking_uri(f"{dagshub_url}/{repo_owner}/{repo_name}.mlflow")
 # logging configuration
 logger = logging.getLogger('model_registration')
 logger.setLevel('DEBUG')
