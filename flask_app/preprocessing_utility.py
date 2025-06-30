@@ -63,3 +63,6 @@ def normalize_text(text):
     text = lemmatization(text)
 
     return text
+
+
+# rajesh singha
