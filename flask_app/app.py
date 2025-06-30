@@ -3,7 +3,7 @@ import os
 import pandas as pd
 from flask import Flask,render_template,request
 import requests
-from preprocessing_utility import normalize_text
+from flask_app.preprocessing_utility import normalize_text
 import dagshub
 import pickle
 dagshub_token = os.getenv("DAGSHUB_PAT")
