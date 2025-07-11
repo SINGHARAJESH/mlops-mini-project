@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.naive_bayes import MultinomialNB
 from xgboost import XGBClassifier
-from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier
+from sklearn.ensemble import RandomForestClassifier, GradientBoostingClassifier 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import pandas as pd
 import re
@@ -161,4 +161,5 @@ with mlflow.start_run():
     mlflow.sklearn.log_model(grid_search.best_estimator_, "model")
 
 
-
+# 
+# Best Params: {'C': 1, 'penalty': 'l2', 'solver': 'liblinear'}

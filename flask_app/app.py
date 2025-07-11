@@ -64,4 +64,6 @@ def predict():
     return render_template('index.html', result=result[0])
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(host="0.0.0.0")
+
+#$env:DAGSHUB_PAT = 64a3665de6816630ff64aacc90ff94d082a8150b
