@@ -67,3 +67,4 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0")
 
 #$env:DAGSHUB_PAT = 64a3665de6816630ff64aacc90ff94d082a8150b
+# docker run -p 80:5000 -e DAGSHUB_PAT = 64a3665de6816630ff64aacc90ff94d082a8150b rajeshai/emotion2:latest
