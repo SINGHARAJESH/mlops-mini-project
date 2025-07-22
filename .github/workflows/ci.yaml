@@ -67,3 +67,4 @@ jobs:
       - name: Push docker image to the ECR
         run: |
             docker push 248268265118.dkr.ecr.ap-south-1.amazonaws.com/firstecr:latest
+
