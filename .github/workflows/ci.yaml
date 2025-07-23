@@ -50,7 +50,7 @@ jobs:
         env:
           DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
         run: python -m unittest tests/test_flask_app.py
-        
+
       - name: Install AWS CLI
         run: pip install awscli==1.32.0
 
@@ -70,4 +70,22 @@ jobs:
       - name: Push docker image to the ECR
         run: |
             docker push 248268265118.dkr.ecr.ap-south-1.amazonaws.com/firstecr:latest
+
+      - name: Deploy to EC2
+        if: success()
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws configure set default.region ap-southeast-2
+            aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 248268265118.dkr.ecr.ap-south-1.amazonaws.com
+            docker pull 248268265118.dkr.ecr.ap-south-1.amazonaws.com/firstecr:latest
+            docker stop my-app || true
+            docker rm my-app || true
+            docker run -d -p 80:5000 -e DAGSHUB_PAT=${{ secrets.DAGSHUB_PAT }} --name rajeshai-app 248268265118.dkr.ecr.ap-south-1.amazonaws.com/firstecr:latest
+
 
